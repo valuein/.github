@@ -7,7 +7,6 @@ Welcome to **Valuein**, a tech startup dedicated to making value investing, fina
 - [About Us](#about-us)
 - [Features](#features)
 - [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## About Us
@@ -23,10 +22,6 @@ At Valuein, we believe that the power of technology can transform the world of v
 ## Contributing
 
 We welcome ideas, opinions, feedback about current features and new features requests from the community!
-
-## License
-
-This project is licensed under a Proprietary Software License. See the LICENSE file for more information.
 
 ## Contact
 
