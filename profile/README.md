@@ -1,20 +1,18 @@
 [![Valuein Logo](https://www.valuein.biz/valuein/colored_logo_no_bg.png)](https://valuein.biz)
 
-## 🙋‍♀️ Hi there 👋
-Welcome to **Valuein**, a tech startup dedicated to making value investing, financial research, and valuations easier for analysts and investors. Our mission is to empower financial professionals with the tools they need to make informed investment decisions quickly and accurately.
+## 🙋‍♀️ Welcome to **Valuein**! 👋
+We are a fintech startup dedicated to simplifying value investing, financial research, and valuations for analysts and investors. 
+
+Our mission is to provide our users with a reliable platform and comprehensive tools for researching companies, conducting valuations, and sharing their analysis with peers, clients, and Valuein's community. This empowers everyone to make well-informed investment decisions quickly and accurately.
+
+At Valuein, our goal is to become the leading global platform for financial research, valuations, and portfolio management, revolutionizing how investors construct profitable portfolios.
 
 ## Table of Contents
 
-- [About Us](#about-us)
 - [Features](#features)
 - [Contributing](#contributing)
 - [Contact](#contact)
 
-## About Us
-
-At Valuein, our mission is to empower investors and analysts with comprehensive tools for company research and valuations, enabling informed investment decisions. 
-
-We aim to become the leading global platform for financial research, valuations, and portfolio management, revolutionizing how investors build profitable portfolios.
 
 ## Features 👩‍💻
 
