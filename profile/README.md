@@ -12,7 +12,9 @@ Welcome to **Valuein**, a tech startup dedicated to making value investing, fina
 
 ## About Us
 
-At Valuein, we believe that the power of technology can transform the world of value investing. Our platform combines advanced analytics, intuitive design, and comprehensive financial data to provide a seamless research experience for investors and analysts.
+At Valuein, our mission is to empower investors and analysts with comprehensive tools for company research and valuations, enabling informed investment decisions. 
+
+We aim to become the leading global platform for financial research, valuations, and portfolio management, revolutionizing how investors build profitable portfolios.
 
 ## Features 👩‍💻
 
