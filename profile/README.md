@@ -1,7 +1,7 @@
 [![Valuein Logo](https://www.valuein.biz/valuein/colored_logo_no_bg.png)](https://valuein.biz)
 
 ## 🙋‍♀️ Welcome to **Valuein**! 👋
-We are a fintech startup dedicated to simplifying value investing, financial research, and valuations for analysts and investors. 
+We are a fintech startup dedicated to simplifying financial research, and valuations for analysts and investors. 
 
 Our mission is to provide our users with a reliable platform and comprehensive tools for researching companies, conducting valuations, and sharing their analysis with peers, clients, and Valuein's community. This empowers everyone to make well-informed investment decisions quickly and accurately.
 
