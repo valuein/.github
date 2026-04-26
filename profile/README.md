@@ -1,106 +1,174 @@
 [![Valuein — Financial Data Infrastructure](https://www.valuein.biz/valuein/colored_logo_no_bg.png)](https://valuein.biz)
 
----
-
-**Institutional-grade U.S. fundamentals data for quants, analysts, and developers.**
-
-Valuein transforms the complexity of SEC EDGAR bulk data into clean, structured, developer-friendly datasets. We bridge the gap between raw filings and actionable quantitative research — so you spend time building models, not cleaning data.
-
-[Explore Datasets](https://valuein.biz) · [Discord](https://discord.gg/68YN8z9J) · [X / Twitter](https://x.com/valuein_)
-
----
-
-## Why Valuein
-
-Most financial data vendors deliver restated, retroactively adjusted numbers. That's fine — until your backtest accidentally sees a restated 2024 earnings figure while simulating a trade in 2023. Valuein preserves filings exactly as they were reported, giving you a reliable foundation for time-sensitive research and quantitative strategies.
-
-### As-Reported Fundamentals
-
-10-K, 10-Q, 20-F, and 8-K filings (including amendments) mapped directly from SEC EDGAR — not retroactively adjusted. By including 8-K current reports alongside standard filings, we capture intra-quarter material events like CEO departures and unexpected bankruptcies, crossing from slow fundamental research into event-driven territory.
-
-### Point-in-Time (PIT) Integrity
-
-Every fact is recorded in an immutable ledger with strict EDGAR timestamps. Your models only see the exact figures that were available to the market on a specific date, eliminating look-ahead bias in backtests and simulations.
-
-### Survivorship-Bias Free
-
-Our dataset includes all companies — active, merged, and delisted — that have reported to the SEC. Train your models on reality, not on an artificially profitable universe that ignores every company that went bankrupt.
-
-### Deep Historical Coverage
-
-105M+ facts across 12M+ filings dating back to 1993+. Multi-decade coverage spanning dot-com crashes, financial crises, and bull markets — the depth required to train robust ML models and stress-test algorithms across full market cycles.
+[![Website](https://img.shields.io/badge/website-valuein.biz-purple)](https://valuein.biz)
+[![PyPI](https://img.shields.io/pypi/v/valuein-sdk?label=valuein-sdk&cacheSeconds=300)](https://pypi.org/project/valuein-sdk/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/valuein-sdk?label=pypi%20downloads&cacheSeconds=3600)](https://pypi.org/project/valuein-sdk/)
+[![MCP Registry](https://img.shields.io/badge/MCP-registry.modelcontextprotocol.io-blue)](https://registry.modelcontextprotocol.io)
+[![License: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-green)](https://github.com/valuein/valuein/blob/main/LICENSE)
+[![Discord](https://img.shields.io/discord/valuein?label=discord&logo=discord&color=5865F2)](https://discord.gg/YDGh9XKWQr)
+[![X / Twitter](https://img.shields.io/twitter/follow/valuein_?style=flat&logo=x)](https://x.com/valuein_)
 
 ---
 
-## Datasets
+**Institutional-grade U.S. fundamentals data for quants, analysts, and AI agents.**
 
-| Dataset | Coverage | History | Access |
-|---|---|---|---|
-| **Sample (S&P 500 5Y)** | S&P 500 constituents | Last 5 years | Free |
-| **S&P 500 Full History** | S&P 500 constituents | Full history | Free (registration required) |
-| **Full Universe** | All SEC-reporting companies | Full history since 1993+ | Paid |
+Valuein turns the complexity of SEC EDGAR bulk filings into clean, structured, developer-friendly datasets. We bridge the gap between raw 10-Ks and quantitative research, so you spend your time building models — not cleaning data.
 
-Start with the free S&P 500 tier to evaluate data quality and schema, then upgrade when you're ready for the full universe.
+[Explore the data](https://valuein.biz) · [Pricing](https://valuein.biz/pricing) · [Discord](https://discord.gg/YDGh9XKWQr) · [X / Twitter](https://x.com/valuein_) · [Public repo](https://github.com/valuein/valuein)
 
 ---
 
-## Developer Experience
+## What sets us apart
 
-Financial data should be as easy to query as any other part of your stack.
+Most financial-data vendors deliver restated, retroactively adjusted numbers. That's fine — until your backtest accidentally sees a 2024 restatement while simulating a 2023 trade. Valuein preserves filings exactly as they were reported and exposes the same data through every channel you already use.
+
+| Property | What it means for you |
+|---|---|
+| 🕒 **Point-in-Time integrity** | Every fact is timestamped with the SEC's `accepted_at`. Filter by `filing_date <= trade_date` and your backtest can only see what the market saw. |
+| ⚖️ **Survivorship-bias free** | All companies — active, delisted, bankrupt, acquired — remain in every snapshot. No artificially profitable universe. |
+| 📜 **As-reported fundamentals** | 10-K, 10-Q, 8-K, 20-F, and amendments mapped directly from EDGAR. 8-K coverage extends from slow fundamental research into event-driven territory. |
+| 📊 **Standardized concepts** | 11,966 raw XBRL tags normalized to ~150 canonical names — both the raw and canonical labels are on every fact row, no hidden mapping table. |
+| 🌊 **Deep historical coverage** | 12M+ filings, 108M+ standardized facts, 1994–present — full market cycles for stress testing and ML training. |
+| 🚀 **Cloud-native delivery** | Parquet on Cloudflare R2 streamed via DuckDB. No bulk downloads, no egress fees, millisecond analytics. |
+
+---
+
+## Distribution channels
+
+The same dataset, delivered five ways so it lands where you already work. **One Stripe-issued token unlocks every channel** — no per-channel billing.
+
+| Channel | Audience | Get started |
+|---|---|---|
+| 🐍 **Python SDK** | Quants, engineers, data scientists | `pip install valuein-sdk` · [PyPI](https://pypi.org/project/valuein-sdk/) |
+| 🤖 **MCP server** | Claude, Cursor, Codex, custom agents | `https://mcp.valuein.biz/mcp` · [registry listing](https://registry.modelcontextprotocol.io) |
+| 📊 **Excel & Power Query** | Analysts, CPAs, researchers | [Setup guide](https://github.com/valuein/valuein/blob/main/docs/excel-guide.md) |
+| 🌐 **Web dashboard** | Retail, executives, non-technical | [valuein.biz](https://valuein.biz) |
+| 🚛 **Bulk data API** | B2B partners, fintech platforms | `https://data.valuein.biz` · [contact us](mailto:sales@valuein.biz) |
+
+---
+
+## Try it in 30 seconds — no token required
 
 ```python
-from valuein import Client
+from valuein_sdk import ValueinClient
 
-v = Client("your_token")
-df = v.get("fact")
-print(df.shape)           # rows available
-print(df.dtypes)           # type validation
-print(df["period"].max())  # freshness check
+with ValueinClient() as client:
+    df = client.query("""
+        SELECT symbol, name, sector
+        FROM   "references"
+        WHERE  is_sp500 = TRUE AND is_active = TRUE
+        ORDER  BY name
+        LIMIT  10
+    """)
+    print(df)
 ```
 
-- **Python SDK** — integrate directly into research notebooks or production pipelines. Available on PyPI.
-- **Cloud-native delivery** — data distributed as Parquet via Cloudflare R2 with zero egress fees. Connect DuckDB and query 105M+ facts over the network in milliseconds, no local storage required.
-- **Machine-readable formats** — standardized outputs for immediate ingestion into Pandas, Polars, or SQL databases.
-- **Excel integration** — 30 years of SEC fundamentals directly in Excel with daily refresh, built for analysts who prefer spreadsheets over code.
+That's a real query against the live S&P 500 sample. Add `VALUEIN_API_KEY` only when you need full universe or full history.
+
+Want an AI agent to query for you instead? Add this to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "valuein": {
+      "url": "https://mcp.valuein.biz/mcp",
+      "headers": { "Authorization": "Bearer YOUR_VALUEIN_API_KEY" }
+    }
+  }
+}
+```
+
+Same URL works for any MCP-capable client — Cursor, Codex, custom LangGraph or CrewAI agents.
+
+---
+
+## Featured projects
+
+| Repository | What it is |
+|---|---|
+| [**valuein**](https://github.com/valuein/valuein) ⭐ | Public docs, examples, notebooks, query cookbook, and the MCP-registry manifest. **Start here.** |
+
+The Python SDK ships from PyPI, the MCP server runs as a Cloudflare Worker, the data pipeline ingests SEC EDGAR daily, and the website is built on Next.js + Cloudflare. Source for those lives in private repos until we open-source them — follow the [public repo](https://github.com/valuein/valuein) for releases.
 
 ---
 
 ## Architecture
 
 ```
-SEC EDGAR  →  Postgres (staging)  →  Parquet  →  R2 (distribution)
-                                                       ↓
-                                              Python SDK / Excel
-                                              DuckDB / Direct query
+SEC EDGAR  →  Pipeline (Python + Pydantic)  →  (Parquet Files)
+                                                      │
+                                       ┌──────────────┼──────────────┐
+                                       ▼                             ▼
+                                Python SDK                       MCP server      
+                                  (DuckDB)                    (mcp.valuein.biz)  
+                                       │                             │
+                                       └──────────────┼──────────────┘
+                                                      ▼
+                                          One Bearer token, every channel
+                                       (Stripe-issued, validated at the edge)
 ```
 
-Our pipeline processes SEC EDGAR bulk data daily, stages it in Postgres for validation, converts to optimized Parquet files, and distributes via Cloudflare R2 — delivering low-latency access without the overhead of traditional API rate limits or massive CSV downloads.
+The pipeline ingests EDGAR within ~60 seconds of acceptance, normalizes 11,966 raw XBRL tags into ~150 canonical concepts via a deterministic waterfall, writes Parquet snapshots to R2, and serves them through a Cloudflare Worker gateway with token-aware tier routing — Pro and Enterprise tokens see the full universe, Free tokens see the S&P 500, anonymous sees the last five years of S&P 500.
 
 ---
 
-## Who It's For
+## Who it's for
 
-- **Quantitative researchers** — point-in-time data and survivorship-bias-free coverage for rigorous backtesting and algorithmic strategy development.
-- **Event-driven funds** — 8-K inclusion captures material events between quarterly filings, giving models a latency advantage.
-- **Financial analysts** — as-reported filings with deep history for fundamental due diligence and company research.
-- **Data engineers** — Parquet-native, cloud-distributed datasets ready to plug into existing data infrastructure.
-- **Academic researchers** — complete historical universe for empirical studies without selection bias.
+- **Quantitative researchers** — point-in-time data and survivorship-bias-free coverage for rigorous backtesting and algorithmic strategy development
+- **Event-driven funds** — 8-K coverage captures intra-quarter material events (CEO departures, bankruptcies, M&A) for latency-sensitive strategies
+- **Financial analysts** — as-reported filings with deep history for fundamental due diligence and company research
+- **Portfolio managers** — sector- and factor-relative screens with consistent, audited inputs
+- **Data engineers** — Parquet-native, cloud-distributed datasets that plug straight into existing data infrastructure
+- **AI / agent builders** — natural-language access to the same data through the MCP server, no SDK required
+- **Academic researchers** — the complete historical universe for empirical studies without selection bias
+
+---
+
+## Roadmap
+
+We're building a financial operating system — the canonical place AI agents and humans go for U.S. fundamentals.
+
+- ✅ Point-in-time, survivorship-bias-free Parquet on R2 (1994–present)
+- ✅ Python SDK with 44 pre-built SQL templates and a multi-factor alpha framework
+- ✅ MCP server with 14 live tools + 8 analyst SOP prompts
+- ✅ Excel template with Power Query and 8 pre-configured sheets
+- 🔄 Semantic search over filing text (Risk Factors, MD&A, Business, Legal, Controls) — Vectorize backfill in progress
+- 🔄 Real-time 8-K push via webhook (Custom tier)
+- 🛣️ Programmatic ticker pages with JSON-LD for AEO discovery
+- 🛣️ Open-source notebook templates (factor screens, DCF, earnings momentum)
 
 ---
 
 ## Contributing
 
-We welcome feedback, feature requests, and data edge case reports from the community. Open an issue in this repo or reach out on Discord.
+We welcome examples, notebook improvements, query recipes, doc fixes, and data edge-case reports.
 
-We're actively looking for contributors to our SDK and community-led valuation models.
+- 🐛 [File an issue](https://github.com/valuein/valuein/issues/new/choose) — data quality, feature request, outage, or general question
+- 💬 Discuss in [Discord](https://discord.gg/q5tmcQEQUr)
+- 📜 Read [CONTRIBUTING.md](https://github.com/valuein/valuein/blob/main/CONTRIBUTING.md) and our [Code of Conduct](https://github.com/valuein/valuein/blob/main/CODE_OF_CONDUCT.md)
+
+We're actively looking for contributors to our SDK examples and community-led valuation models. Lifetime access tokens are available for high-quality contributions — see Discord for details.
 
 ---
 
-## Contact
+## Get in touch
 
-- [Discord](https://discord.gg/68YN8z9J) — real-time support and community
-- [X / Twitter](https://x.com/valuein_) — product updates and data insights
-- [Website](https://valuein.biz)
+| | |
+|---|---|
+| 💬 **Discord** | [discord.gg/q5tmcQEQUr](https://discord.gg/q5tmcQEQUr) — community + real-time support |
+| 🐦 **X / Twitter** | [@valuein_](https://x.com/valuein_) — product updates and data insights |
+| 🌐 **Website** | [valuein.biz](https://valuein.biz) |
+| ✉️ **Support** | [support@valuein.biz](mailto:support@valuein.biz) |
+| 💼 **Sales** | [sales@valuein.biz](mailto:sales@valuein.biz) |
+| 🛡️ **Security** | [security@valuein.biz](mailto:security@valuein.biz) |
+| 🧾 **Compliance** | [compliance@valuein.biz](mailto:compliance@valuein.biz) |
 
+---
+
+<div align="center">
 
 ### Empowering better decisions through data integrity.
+
+[Get started →](https://valuein.biz/pricing)
+
+</div>
